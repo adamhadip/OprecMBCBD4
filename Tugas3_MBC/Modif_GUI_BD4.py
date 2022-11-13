@@ -10,7 +10,7 @@ todos = {}                                              # Untuk membuat dictiona
 def detailTodo(cb = None):                              # Pengembalian fungsi jika tidak ada value 
     win = tk.Toplevel()
     win.wm_title("Detail Kegiatan")
-    win.configure(bg='#4B086D')                         # Mengubah warna baground menjadi ungu 
+    win.configure(bg='#4B086D')                         # Mengubah warna background menjadi ungu 
     selectedItem = treev.focus()
     selectedIndex = treev.item(selectedItem)['text']
     selectedTodo = todos[tanggal][selectedIndex]
@@ -66,24 +66,25 @@ def addTodo(win,key,jam,menit,judul,keterangan):
 def AddForm(): 
     win = tk.Toplevel()
     win.wm_title("+")
+    win.configure(bg='#4B086D') #nyamain warna
     jam = tk.IntVar(value = 10)
     menit = tk.IntVar(value = 30)
     judul = tk.StringVar(value="")
-    tk.Label(win, text="Waktu : ").grid(row=0, column = 0,sticky="NW")
-    tk.Spinbox(win, from_= 0, to = 23, textvariable = jam, width = 3).grid(row = 0, column = 1)
-    tk.Spinbox(win, from_= 0, to = 59, textvariable = menit, width = 3).grid(row = 0, column = 2)
-    tk.Label(win, text = "Judul:").grid(row = 1, column = 0,sticky="NW")
+    tk.Label(win, text="Waktu : ").grid(row=0, column = 0)
+    tk.Spinbox(win, from_= 0, to = 23, textvariable = jam, width = 3).grid(row = 0, column = 1, sticky = "W",padx=29) #nambahin sticky
+    tk.Spinbox(win, from_= 0, to = 59, textvariable = menit, width = 3).grid(row = 0, column = 2, sticky = "W",padx=29) #nambahin sticky
+    tk.Label(win, text = "Judul:").grid(row = 1, column = 0)
     tk.Entry(win, textvariable = judul).grid(row = 1, column = 1, columnspan = 1)
-    tk.Label(win, text = 'Keterangan:').grid(row = 2, column = 0,sticky="NW")
+    tk.Label(win, text = "Keterangan:").grid(row = 2, column = 0) #ngasih "" di keterangan
     keterangan = ScrolledText(win, width = 20, height = 5)
-    keterangan.grid(row = 2, column = 1, columnspan = 2, rowspan = 4)
+    keterangan.grid(row = 2, column = 1, columnspan = 2, rowspan = 4, sticky = "SW")
     tanggal = str(cal.selection_get())
     tk.Button(win, text = "Tambah", command = lambda: addTodo(win, tanggal, jam, menit, judul, keterangan)).grid(row = 6, columnspan = 3)
 def title():
     waktu = strftime("%H:%M")
     tanggal = str(cal.selection_get())
     root.title(tanggal + " | " + waktu + " | ")
-    root.after(1000, title)   
+    root.after(1000, title)    
 root = tk.Tk()
 cal = Calendar(root, font = "Times", weight = "Bold", selectmode = 'day', locale = 'id_ID', cursor = 'hand1')
 cal.grid(row = 1, column = 0, sticky = 'N', rowspan = 7)
