@@ -27,32 +27,32 @@ def detailTodo(cb = None):                              # Pengembalian fungsi ji
     keterangan.configure(state = "disabled") 
     img = PhotoImage(file = r"C:\Users\USER\Downloads\sukuna-jujutsu-kaisen-hd-wallpaper-1920x1080-uhdpaper.com-325.1_a.png") 
     img1 = img.subsample(10, 10)
-    tk.Label(win, image = img1).grid(row = 0, column = 3,columnspan = 3, rowspan = 3, padx = 5, pady = 5) #MENAMBAHKAN IMAGE KE DETAIL TODo
+    tk.Label(win, image = img1).grid(row = 0, column = 3,columnspan = 3, rowspan = 3, padx = 5, pady = 5) #MENAMBAHKAN IMAGE KE DETAIL todo, untuk coloumnspan dan rowspan berfungsi untuk menggabungkan suatu bari dan kolom ke 3 
     Label.pack()
 def LoadTodos():
     global todos 
-    f = open('mytodo.dat','r')
+    f = open('mytodo.dat','r') #dia akan ngebaca file mytodo.dat
     data = f.read()
     f.close()
     todos = eval(data)
     ListTodo()
-def SaveTodos(): 
-    f = open('mytodo.dat','w')
+def SaveTodos(): #untuk menyimpan kebagian mytodo.dat
+    f = open('mytodo.dat','w')#W sebagai write jadi dia akan menuliskan apa yang kita save
     f.write(str(todos))
     f.close()
-def delTodo(): 
+def delTodo(): #untuk ngehapus yang ada di list tersebut 
     tanggal = str(cal.selection_get())
     selectedItem = treev.focus()
     todos[tanggal].pop(treev.item(selectedItem)['text'])
     ListTodo()
-def ListTodo(cb = None): 
+def ListTodo(cb = None): #untuk ngelist hasil yang ditambahkan
     for i in treev.get_children(): 
         treev.delete(i)
     tanggal = str(cal.selection_get())
     if tanggal in todos : 
         for i in range (len(todos[tanggal])): 
             treev.insert("","end",text = i, values = (todos[tanggal][i]['Waktu'], todos[tanggal][i]['Judul']))
-def addTodo(win,key,jam,menit,judul,keterangan): 
+def addTodo(win,key,jam,menit,judul,keterangan): #Untuk menambahkan todo list kembali jika dilist pertama sudah ditambahkan atau juga sebaagi penyimpan suatu variabel 
     newTodo = {
         "Waktu":"{}:{}".format(jam.get(), menit.get()), 
         "Judul":judul.get(), 
@@ -88,7 +88,7 @@ def title():
     root.title(tanggal + " | " + waktu + " | LIST TO DO" )  ## Menambah Judul
     root.after(1000, title)    
 root = tk.Tk()
-root.configure(bg='#02c1cf')
+root.configure(bg='#02c1cf') #Menambahkan Warna 
 root.iconbitmap(r"C:\Users\USER\OprecMBCBD4\Tugas3_MBC\icon.ico")  ## Mengubah logo menjadi sesuai dengan apliakasi yaitu to do list
 img = PhotoImage(file = r"C:\Users\USER\Downloads\albert-einstein-quotes-jpg.png") #Menambah gambar agar terlihar lebih fresh lebih lagi gambar untuk kita bisa motivasi
 img1 = img.subsample(5, 7)
@@ -108,13 +108,13 @@ treev["show"] = 'headings'
 treev.column("1", width = 100)
 treev.heading("1", text = "JAM")
 treev.heading("2", text = "JUDUL")
-btnAdd = tk.Button (root, text='Tambah', width=20, bg='skyblue1', fg='black', command=AddForm) ## mengbah warna tombol tambah
+btnAdd = tk.Button (root, text='Tambah', width=20, bg='green', fg='white', command=AddForm) ## mengubah warna tombol tambah
 btnAdd.grid(row = 4, column = 1, sticky = 'N')
-btnDel = tk.Button (root, text='Hapus', width=20, bg='skyblue1', fg='black', command=delTodo) ## mengbah warna tombol hapus
+btnDel = tk.Button (root, text='Hapus', width=20, bg='red', fg='white', command=delTodo) ## mengubah warna tombol hapus
 btnDel.grid(row = 4, column = 2, sticky = 'N')
-btnLoad = tk.Button (root, text='Load', width=20, bg='skyblue1', fg='black', command=LoadTodos) ## mengbah warna tombol load
+btnLoad = tk.Button (root, text='Load', width=20, bg='skyblue1', fg='black', command=LoadTodos) ## mengubah warna tombol load
 btnLoad.grid(row = 5, column = 1, sticky = 'S')
-btnSave = tk.Button (root, text='Save', width=20, bg='skyblue1', fg='black', command=SaveTodos) ## ## mengbah warna tombol save
+btnSave = tk.Button (root, text='Save', width=20, bg='skyblue1', fg='black', command=SaveTodos) ## ## mengubah warna tombol save
 btnSave.grid(row = 5, column = 2, sticky = 'S')
 title()
 root.mainloop()
