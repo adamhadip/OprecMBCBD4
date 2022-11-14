@@ -71,23 +71,28 @@ def AddForm():
     jam = tk.IntVar(value = 10)
     menit = tk.IntVar(value = 30)
     judul = tk.StringVar(value="")
-    tk.Label(win, text="Waktu : ").grid(row=0, column = 0)
-    tk.Spinbox(win, from_= 0, to = 23, textvariable = jam, width = 3).grid(row = 0, column = 1, sticky = "W",padx=29) #nambahin sticky
-    tk.Spinbox(win, from_= 0, to = 59, textvariable = menit, width = 3).grid(row = 0, column = 2, sticky = "W",padx=29) #nambahin sticky
-    tk.Label(win, text = "Judul:").grid(row = 1, column = 0)
+    tk.Label(win, text="Waktu\t\t: ",bg='#4B086D',fg= 'gold').grid(row=0, column = 0) #Ngubah warna di waktu 
+    tk.Spinbox(win, from_= 0, to = 23, textvariable = jam, width = 3).grid(row = 0, column = 1, sticky = "W",padx=35) #nambahin sticky
+    tk.Spinbox(win, from_= 0, to = 59, textvariable = menit, width = 3).grid(row = 0, column = 2, sticky = "W",padx=15) #nambahin sticky
+    tk.Label(win, text = "Judul\t\t:",bg='#4B086D',fg= 'gold').grid(row = 1, column = 0)#ngubah warna di judul 
     tk.Entry(win, textvariable = judul).grid(row = 1, column = 1, columnspan = 1)
-    tk.Label(win, text = "Keterangan:").grid(row = 2, column = 0) #ngasih "" di keterangan
+    tk.Label(win, text = "Keterangan\t:",bg='#4B086D',fg= 'gold').grid(row = 2, column = 0) #ngasih "" di keterangan dan ngubah warnanya 
     keterangan = ScrolledText(win, width = 20, height = 5)
     keterangan.grid(row = 2, column = 1, columnspan = 2, rowspan = 4, sticky = "SW")
     tanggal = str(cal.selection_get())
-    tk.Button(win, text = "Tambah", command = lambda: addTodo(win, tanggal, jam, menit, judul, keterangan)).grid(row = 6, columnspan = 3)
+    tk.Button(win, text = "Tambah", command = lambda: addTodo(win, tanggal, jam, menit, judul, keterangan),bg='skyblue1', fg='black').grid(row = 6, columnspan = 3)
+    #ngubah warna di bagian button tambah menjadi skyblue
 def title():
     waktu = strftime("%H:%M")
     tanggal = str(cal.selection_get())
     root.title(tanggal + " | " + waktu + " | LIST TO DO" )  ## Menambah Judul
     root.after(1000, title)    
 root = tk.Tk()
-root.iconbitmap(r"C:\Users\Adrian Wibisono\OprecMBCBD4\Tugas3_MBC\icon.ico")  ## Mengubah logo menjadi sesuai dengan apliakasi yaitu to do list
+root.configure(bg='#02c1cf')
+root.iconbitmap(r"C:\Users\USER\OprecMBCBD4\Tugas3_MBC\icon.ico")  ## Mengubah logo menjadi sesuai dengan apliakasi yaitu to do list
+img = PhotoImage(file = r"C:\Users\USER\Downloads\albert-einstein-quotes-jpg.png") #Menambah gambar agar terlihar lebih fresh lebih lagi gambar untuk kita bisa motivasi
+img1 = img.subsample(5, 7)
+tk.Label(root, image = img1).grid(row = 0, column = 4,columnspan = 3, rowspan = 3, padx = 5, pady = 10) #Label dari image Albert Einstein 
 cal = Calendar(root, font = "Times", weight = "Bold", selectmode = 'day', locale = 'id_ID', cursor = 'hand1')
 cal.grid(row = 1, column = 0, sticky = 'N', rowspan = 7)
 cal.bind("<<CalendarSelected>>", ListTodo)
