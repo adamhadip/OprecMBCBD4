@@ -1,11 +1,11 @@
 import tkinter as tk                                    # Mengimport tkinter untuk menampilkan GUI nya 
-from tkinter import ttk
-from turtle import bgcolor                                 # Dari library tkinter kita import tkinternya agar bisa dipanggil dan dimunculkan
+from tkinter import ttk                                 # Dari library tkinter kita import tkinternya agar bisa memanggil si ttk 
+from turtle import bgcolor                              # Dari library tkinter kita import tkinternya agar bisa memanggil bgcolor
 from tkcalendar import Calendar                         # Dari library tkinter kita import juga tkcalendar dan memunculkan calendar 
 from tkinter.scrolledtext import ScrolledText           # Dari library tkinter kita import scrolled text agar text ini bisa ada fitur scroll nya  
 from time import strftime                               # Fungsinya untuk mengkonversi string ke time 
-from tkinter import * 
-from PIL import ImageTk, Image
+from tkinter import *                                   # Menambah library baru dari tkinter kita mengambil bintang agar semua modul terpanggil 
+from PIL import ImageTk, Image                          # dari PIL kita mengambil ImageTK, dan Image agar bisa memasukkan gambar
 todos = {}                                              # Untuk membuat dictionary todos
 
 def detailTodo(cb = None):                              # Pengembalian fungsi jika tidak ada value 
@@ -85,7 +85,7 @@ def AddForm():
 def title():
     waktu = strftime("%H:%M")
     tanggal = str(cal.selection_get())
-    root.title(tanggal + " | " + waktu + " | LIST TO DO" )  ## Menambah Judul
+    root.title(tanggal + " | " + waktu + " | LIST TO DO" )  ## Menambah Judul LIST TO DO 
     root.after(1000, title)    
 root = tk.Tk()
 root.configure(bg='#02c1cf') #Menambahkan Warna 
@@ -108,13 +108,13 @@ treev["show"] = 'headings'
 treev.column("1", width = 100)
 treev.heading("1", text = "JAM")
 treev.heading("2", text = "JUDUL")
-btnAdd = tk.Button (root, text='Tambah', width=20, bg='green', fg='white', command=AddForm) ## mengubah warna tombol tambah
+btnAdd = tk.Button (root, text='Tambah', width=20, bg='green', fg='white', command=AddForm) # mengubah warna tombol tambah menjadi hijau agar bisa terlihat
 btnAdd.grid(row = 4, column = 1, sticky = 'N')
-btnDel = tk.Button (root, text='Hapus', width=20, bg='red', fg='white', command=delTodo) ## mengubah warna tombol hapus
+btnDel = tk.Button (root, text='Hapus', width=20, bg='red', fg='white', command=delTodo) # mengubah warna tombol hapus
 btnDel.grid(row = 4, column = 2, sticky = 'N')
-btnLoad = tk.Button (root, text='Load', width=20, bg='skyblue1', fg='black', command=LoadTodos) ## mengubah warna tombol load
+btnLoad = tk.Button (root, text='Load', width=20, bg='skyblue1', fg='black', command=LoadTodos) # mengubah warna tombol load
 btnLoad.grid(row = 5, column = 1, sticky = 'S')
-btnSave = tk.Button (root, text='Save', width=20, bg='skyblue1', fg='black', command=SaveTodos) ## ## mengubah warna tombol save
+btnSave = tk.Button (root, text='Save', width=20, bg='skyblue1', fg='black', command=SaveTodos) #mengubah warna tombol save
 btnSave.grid(row = 5, column = 2, sticky = 'S')
 title()
 root.mainloop()
