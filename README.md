@@ -1,0 +1,21 @@
+# OprecMBCBD4
+PERUBAHANANNYA : 
+Sticky untuk memnentukan dimana tempat kita menaruh inputan dengan arah mata angin, N = north, East = E, dll
+tk.entry sebagai inputan 
+tk.label sebagai label aja kyk di permen dll
+
+5 perubahan GUI Adam : 
+- Menambahkan Image ke bagian adddetailtodo 
+- lalu mengubah stickty menjadi NW 
+- mengubah width di bagian detailtodo : tk entry judul dan keterangan agar menjadi lebih presisi 
+- penambahan configure pada win. configure agar bg jadi warna yang diinginkan 
+- mengubah warna pada keterangan judul tanggal. 
+- menambah gambar pada detailform
+Perubahan yang dilakukan Yoga : 
+- mengubah warna dari baground addform 
+- mengatur judul, tanggal, dan keterangan agar sesuai 
+- mengatur width dan Sticky
+Perubahan yang dilakukan Adrian : 
+- Menambah logo di paling atas tanggal 
+- mengubah warna dari tombol tambah hapus load dan save 
+- Menambah Gambar
